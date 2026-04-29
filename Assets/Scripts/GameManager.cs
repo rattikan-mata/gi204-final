@@ -1,95 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-/// <summary>
-/// GameManager - ควบคุมสถานะหลักของเกม (Score, Scene Flow)
-/// เป็น Singleton ที่ persist ข้ามซีน
-/// </summary>
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager instance;
+    public int score = 0;
+    public int kidsAnswered = 0;
 
-    [Header("Game State")]
-    public int currentScene = 1;         // ซีนที่ 1 หรือ 2
-    public int totalChildren = 5;        // จำนวนเด็กต่อซีน
-    public int childrenAnswered = 0;     // เด็กที่ตอบถูกแล้ว
-    public int score = 0;               // คะแนนในซีนปัจจุบัน
+    public TextMeshProUGUI scoreText; // ลาก Text คะแนนมาใส่
+    public GameObject endPanel;       // ลาก Panel สรุปคะแนนมาใส่
 
-    [Header("Scene Names")]
-    public string scene1Name = "Scene1";
-    public string scene2Name = "Scene2";
-    public string creditSceneName = "Credits";
+    void Awake() { instance = this; }
 
-    private void Awake()
+    public void AddScore(bool correct)
     {
-        // Singleton pattern
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+        if (correct) score++;
+        kidsAnswered++;
+        scoreText.text = "คะแนน: " + score;
 
-    /// <summary>
-    /// เรียกเมื่อเด็กตอบคำถามถูก
-    /// </summary>
-    public void ChildAnsweredCorrectly()
-    {
-        score++;
-        childrenAnswered++;
-        Debug.Log($"[GameManager] Score: {score}/{totalChildren}");
-
-        if (childrenAnswered >= totalChildren)
-        {
-            // จบซีน — แสดง ScorePanel ก่อนไปซีนถัดไป
-            UIManager.Instance?.ShowScorePanel(score, totalChildren);
+        if (kidsAnswered >= 5)
+        { // ตอบครบ 5 คน โชว์หน้าสรุป
+            endPanel.SetActive(true);
         }
     }
 
-    /// <summary>
-    /// เรียกเมื่อเด็กตอบผิด (ไม่เพิ่มคะแนน)
-    /// </summary>
-    public void ChildAnsweredWrong()
+    public void NextScene() // ลากไปใส่ปุ่ม "ด่านต่อไป"
     {
-        childrenAnswered++;
-        Debug.Log($"[GameManager] Wrong! Score: {score}/{totalChildren}");
-
-        if (childrenAnswered >= totalChildren)
-        {
-            UIManager.Instance?.ShowScorePanel(score, totalChildren);
-        }
-    }
-
-    /// <summary>
-    /// โหลดซีนถัดไปหลังดูคะแนนแล้ว
-    /// </summary>
-    public void GoToNextScene()
-    {
-        score = 0;
-        childrenAnswered = 0;
-
-        if (currentScene == 1)
-        {
-            currentScene = 2;
-            SceneManager.LoadScene(scene2Name);
-        }
-        else
-        {
-            // จบเกม ไปซีน Credits
-            SceneManager.LoadScene(creditSceneName);
-        }
-    }
-
-    /// <summary>
-    /// รีสตาร์ทเกมใหม่ตั้งแต่ต้น
-    /// </summary>
-    public void RestartGame()
-    {
-        currentScene = 1;
-        score = 0;
-        childrenAnswered = 0;
-        SceneManager.LoadScene(scene1Name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
