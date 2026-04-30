@@ -1,0 +1,510 @@
+fileFormatVersion: 2
+guid: e9c2453ec8ef27d43b84e8ef7ca31c35
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_0
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1332
+        width: 380
+        height: 841
+      alignment: 9
+      pivot: {x: 0.29075125, y: 0.090293564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea1de5de8a149e44688258db578dba26
+      internalID: 8058133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_1
+      rect:
+        serializedVersion: 2
+        x: 2027
+        y: 1876
+        width: 516
+        height: 471
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08357566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b900e409be3293141bc55870051db485
+      internalID: 2010710081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_2
+      rect:
+        serializedVersion: 2
+        x: 2675
+        y: 1955
+        width: 147
+        height: 186
+      alignment: 9
+      pivot: {x: 0.50000167, y: 0.12950216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 915854291a05cb1428dfdebf8f459a9c
+      internalID: -2074176666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_3
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1955
+        width: 147
+        height: 186
+      alignment: 9
+      pivot: {x: 0.57239187, y: 0.14242259}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3cd3d1cc43a6094a9922e7042e796d4
+      internalID: 1566646925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1312
+        width: 566
+        height: 310
+      alignment: 9
+      pivot: {x: 0.16283576, y: 0.20930137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6950eef5d6f0042b310760003ef00f
+      internalID: 177286062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_5
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 1401
+        width: 135
+        height: 221
+      alignment: 9
+      pivot: {x: 0.5723181, y: 0.97489053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9764ba21d412ddf4aae9f44d172bec53
+      internalID: -1490934133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_6
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 1401
+        width: 135
+        height: 221
+      alignment: 9
+      pivot: {x: 0.5000018, y: 0.9307149}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dff5eaaddad0ec46a2958c3cc743611
+      internalID: 1010757327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_7
+      rect:
+        serializedVersion: 2
+        x: 2679
+        y: 1342
+        width: 437
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f997ac923606d04f876144334dffaa8
+      internalID: 877886347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 633
+        width: 258
+        height: 537
+      alignment: 9
+      pivot: {x: 0.39726803, y: 0.90472966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98de720c5556fc64db9a5de6d361ce3d
+      internalID: 1546803908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_9
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 633
+        width: 258
+        height: 537
+      alignment: 9
+      pivot: {x: 0.41781473, y: 0.8751153}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dcdc0f3f5c3ef845aea2f08920e441e
+      internalID: -77224851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_10
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 662
+        width: 842
+        height: 554
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9608e04ce09f0b14a824c8b42e1a29a1
+      internalID: -1910722189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_11
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 545
+        width: 515
+        height: 582
+      alignment: 9
+      pivot: {x: 0.51382214, y: 0.13918857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f454cb64e348194dad6dff3a9bbdf70
+      internalID: 552718742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_12
+      rect:
+        serializedVersion: 2
+        x: 2611
+        y: 814
+        width: 148
+        height: 186
+      alignment: 9
+      pivot: {x: 0.40380695, y: 0.1364267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c57b62f28502c94e9483cb91f247918
+      internalID: -1446189118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_13
+      rect:
+        serializedVersion: 2
+        x: 2847
+        y: 822
+        width: 148
+        height: 185
+      alignment: 9
+      pivot: {x: 0.62024254, y: 0.095983885}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb3a9de711908148b343d4a75d7a524
+      internalID: -1497001237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_14
+      rect:
+        serializedVersion: 2
+        x: 2102
+        y: 187
+        width: 135
+        height: 221
+      alignment: 9
+      pivot: {x: 0.6054579, y: 0.95093834}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d88f14b43781747b52217ee745aa88
+      internalID: -178259303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_15
+      rect:
+        serializedVersion: 2
+        x: 2310
+        y: 187
+        width: 135
+        height: 221
+      alignment: 9
+      pivot: {x: 0.5000018, y: 0.93483335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c03164af8f801d44b1581c944b50dd5
+      internalID: -197752312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ICECREAM.ai2-05_16
+      rect:
+        serializedVersion: 2
+        x: 2633
+        y: 263
+        width: 435
+        height: 482
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705a5177089856a4e8a5512bc18c0c3d
+      internalID: 2021872065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3ff958ea4793bf446afefa83ccc4931a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ICECREAM.ai2-05_0: 8058133
+      ICECREAM.ai2-05_1: 2010710081
+      ICECREAM.ai2-05_10: -1910722189
+      ICECREAM.ai2-05_11: 552718742
+      ICECREAM.ai2-05_12: -1446189118
+      ICECREAM.ai2-05_13: -1497001237
+      ICECREAM.ai2-05_14: -178259303
+      ICECREAM.ai2-05_15: -197752312
+      ICECREAM.ai2-05_16: 2021872065
+      ICECREAM.ai2-05_2: -2074176666
+      ICECREAM.ai2-05_3: 1566646925
+      ICECREAM.ai2-05_4: 177286062
+      ICECREAM.ai2-05_5: -1490934133
+      ICECREAM.ai2-05_6: 1010757327
+      ICECREAM.ai2-05_7: 877886347
+      ICECREAM.ai2-05_8: 1546803908
+      ICECREAM.ai2-05_9: -77224851
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
