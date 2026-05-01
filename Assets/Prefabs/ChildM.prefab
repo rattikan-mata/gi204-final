@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 425367597762289295}
   - component: {fileID: 6091223779926893979}
   - component: {fileID: -5529004121813288276}
+  - component: {fileID: 655743585376969581}
   m_Layer: 0
   m_Name: ChildM
   m_TagString: Untagged
@@ -567,6 +568,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &655743585376969581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895159448473861247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27da66815d6dbb4bb5c27def9cbeaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Child
+  question: 1 + 1 = ?
+  choices:
+  - 1
+  - 2
+  - 3
+  - 4
+  correctAns: 1
 --- !u!1 &8973183808521176893
 GameObject:
   m_ObjectHideFlags: 0

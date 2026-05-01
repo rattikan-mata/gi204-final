@@ -8,9 +8,9 @@ public class Child : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Truck"))
+        if (col.CompareTag("Player"))
         {
-            col.GetComponent<Truck>().canMove = false; // หยุดรถ
+            col.GetComponent<Player>().canMove = false; // หยุดรถ
             QuestionUI.instance.ShowQuestion(this);    // โชว์คำถาม
             gameObject.SetActive(false);               // ปิดตัวเด็ก
         }

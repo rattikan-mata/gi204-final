@@ -28,7 +28,7 @@ public class QuestionUI : MonoBehaviour
     {
         bool correct = (index == currentChild.correctAns);
         GameManager.instance.AddScore(correct);
-        FindObjectOfType<Truck>().canMove = true; // ให้รถวิ่งต่อ
+        FindAnyObjectByType<Player>().canMove = true; // ให้รถวิ่งต่อ
         panel.SetActive(false); // ปิดหน้าต่างคำถาม
     }
 }
