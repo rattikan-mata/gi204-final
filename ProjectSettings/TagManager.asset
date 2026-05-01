@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Lava
   - Ice
+  - Child
+  - Ground
   layers:
   - Default
   - TransparentFX
