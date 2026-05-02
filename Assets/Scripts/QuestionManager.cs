@@ -1,65 +1,98 @@
-using UnityEngine;
+๏ปฟusing UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 
 public class QuestionManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class QuestionData
-    {
-        public string question;
-        public string[] choices;      // ตัวเลือก 4 ข้อ
-        public int correctIndex;      // index ของคำตอบถูก (0-3)
-    }
-
-    public List<QuestionData> questions = new List<QuestionData>();
-
     public GameObject questionPanel;
-    public Text questionText;
-    public Button[] answerButtons;        // ปุ่มตัวเลือก 4 ปุ่ม
-    public Text[] answerButtonTexts;      // Text บนแต่ละปุ่ม
+    public TMP_Text questionText;
+
+    public Button[] answerButtons = new Button[4];
+    public TMP_Text[] answerButtonTexts = new TMP_Text[4];
+
     public GameObject feedbackPanel;
-    public Text feedbackText;
+    public TMP_Text feedbackText;
+
+    public GameObject loadingPanel;
+    public string questionTopic = "เธเธดเธชเธดเธเธชเนเธฃเธฐเธ”เธฑเธเธกเธฑเธเธขเธกเธ•เนเธ เน€เธฃเธทเนเธญเธเนเธฃเธเนเธฅเธฐเธเธฒเธฃเน€เธเธฅเธทเนเธญเธเธ—เธตเน";
 
     private CarController carController;
     private ScoreManager scoreManager;
+    private AIQuestionService aiService;
+
     private GameObject currentChild;
-    private int currentQuestionIndex = 0;
     private int questionCount = 0;
+    private int currentCorrectIndex = 0;
 
     void Start()
     {
         carController = FindFirstObjectByType<CarController>();
         scoreManager = FindFirstObjectByType<ScoreManager>();
+        aiService = AIQuestionService.Instance;
 
-        questionPanel.SetActive(false);
-        feedbackPanel.SetActive(false);
+        if (carController == null) Debug.LogError("[QM] เนเธกเนเธเธ CarController!");
+        if (scoreManager == null) Debug.LogError("[QM] เนเธกเนเธเธ ScoreManager!");
+        if (aiService == null) Debug.LogError("[QM] เนเธกเนเธเธ AIQuestionService! เนเธชเนเนเธ Scene เธ”เนเธงเธข");
 
-        if (questions.Count == 0)
-            LoadDefaultQuestions();
+        SetPanelActive(questionPanel, false);
+        SetPanelActive(feedbackPanel, false);
+        SetPanelActive(loadingPanel, false);
     }
 
     public void ShowQuestion(GameObject child)
     {
         currentChild = child;
-        carController.SetCanMove(false);
+        carController?.SetCanMove(false);
 
-        int idx = Random.Range(0, questions.Count);
-        currentQuestionIndex = idx;
-        QuestionData q = questions[idx];
+        SetPanelActive(loadingPanel, true);
 
-        questionText.text = q.question;
+        if (aiService != null)
+        {
+            aiService.GetQuestion(questionTopic, OnQuestionReceived);
+        }
+        else
+        {
+            OnQuestionReceived(GetFallbackQuestion(), null);
+        }
+    }
+
+    private void OnQuestionReceived(AIQuestionService.QuestionData q, string error)
+    {
+        SetPanelActive(loadingPanel, false);
+
+        if (error != null || q == null)
+        {
+            Debug.LogWarning("[QM] AI เธฅเนเธกเน€เธซเธฅเธง เนเธเน fallback: " + error);
+            q = GetFallbackQuestion();
+        }
+
+        DisplayQuestion(q);
+    }
+
+    private void DisplayQuestion(AIQuestionService.QuestionData q)
+    {
+        currentCorrectIndex = q.correctIndex;
+
+        if (questionText != null)
+            questionText.text = q.question;
+        else
+            Debug.LogError("[QM] questionText เธขเธฑเธเนเธกเนเธเธนเธเนเธ Inspector!");
+
         for (int i = 0; i < answerButtons.Length; i++)
         {
+            if (answerButtons[i] == null) { Debug.LogError($"[QM] answerButtons[{i}] null"); continue; }
+
             if (i < q.choices.Length)
             {
                 answerButtons[i].gameObject.SetActive(true);
-                answerButtonTexts[i].text = q.choices[i];
 
-                int capturedIndex = i;
+                if (answerButtonTexts[i] != null)
+                    answerButtonTexts[i].text = q.choices[i];
+
+                int captured = i;
                 answerButtons[i].onClick.RemoveAllListeners();
-                answerButtons[i].onClick.AddListener(() => OnAnswerSelected(capturedIndex));
+                answerButtons[i].onClick.AddListener(() => OnAnswerSelected(captured));
             }
             else
             {
@@ -67,23 +100,23 @@ public class QuestionManager : MonoBehaviour
             }
         }
 
-        questionPanel.SetActive(true);
+        SetPanelActive(questionPanel, true);
     }
 
     private void OnAnswerSelected(int selectedIndex)
     {
-        questionPanel.SetActive(false);
+        SetPanelActive(questionPanel, false);
 
-        bool correct = (selectedIndex == questions[currentQuestionIndex].correctIndex);
+        bool correct = (selectedIndex == currentCorrectIndex);
 
         if (correct)
         {
-            scoreManager.AddScore();
-            ShowFeedback("? Correct! Got Free Ice Cream ??");
+            scoreManager?.AddScore();
+            ShowFeedback("CORRECT! Ice cream for you! ๐ฆ");
         }
         else
         {
-            ShowFeedback("? Wrong! Don't get Ice Cream ??");
+            ShowFeedback("WRONG! Maybe next time!");
         }
 
         questionCount++;
@@ -91,59 +124,57 @@ public class QuestionManager : MonoBehaviour
 
     private void ShowFeedback(string message)
     {
-        feedbackPanel.SetActive(true);
-        feedbackText.text = message;
+        if (feedbackText != null) feedbackText.text = message;
+        SetPanelActive(feedbackPanel, true);
         StartCoroutine(HideFeedbackAfterDelay(1.5f));
     }
 
     private IEnumerator HideFeedbackAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        feedbackPanel.SetActive(false);
+        SetPanelActive(feedbackPanel, false);
 
-        if (currentChild != null)
-            Destroy(currentChild);
+        if (currentChild != null) Destroy(currentChild);
 
-        scoreManager.CheckAllAnswered(questionCount);
-
-        carController.SetCanMove(true);
+        scoreManager?.CheckAllAnswered(questionCount);
+        carController?.SetCanMove(true);
     }
 
-    private void LoadDefaultQuestions()
+    private static readonly string[][] fallbackPool = {
+    new[] { "What is the approximate gravitational acceleration of the Earth?",
+            "5 m/sยฒ", "9.8 m/sยฒ", "15 m/sยฒ", "20 m/sยฒ" },
+
+    new[] { "What does the formula F = ma represent?",
+            "Force = Mass รท Acceleration", "Force = Mass ร— Acceleration",
+            "Force = Mass + Acceleration", "Force = Mass โ’ Acceleration" },
+
+    new[] { "How does the Ice surface affect the car?",
+            "Makes it faster", "Makes it slower", "Makes it slippery and hard to control", "Stops the car immediately" },
+
+    new[] { "What happens when the car drives on Lava?",
+            "The car jumps higher", "The car glides smoothly", "The car slows down and stops quickly", "The car flips over" },
+
+    new[] { "What is Newton's First Law of Motion?",
+            "F = ma", "An object will remain at rest or move at a constant velocity unless acted upon by a force",
+            "For every action, there is an equal and opposite reaction", "Energy cannot be destroyed" },
+};
+    private int fallbackIndex = 0;
+
+    private AIQuestionService.QuestionData GetFallbackQuestion()
     {
-        questions.Add(new QuestionData
+        var row = fallbackPool[fallbackIndex % fallbackPool.Length];
+        fallbackIndex++;
+
+        return new AIQuestionService.QuestionData
         {
-            question = "แรงโน้มถ่วงโลกมีค่าประมาณเท่าไร?",
-            choices = new[] { "5 m/s?", "9.8 m/s?", "15 m/s?", "20 m/s?" },
+            question = row[0],
+            choices = new[] { row[1], row[2], row[3], row[4] },
             correctIndex = 1
-        });
-        questions.Add(new QuestionData
-        {
-            question = "F = ma หมายถึงอะไร?",
-            choices = new[] { "แรง = มวล ? ความเร็ว", "แรง = มวล ? ความเร่ง",
-                              "แรง = มวล + ความเร่ง", "แรง = มวล ? ความเร่ง" },
-            correctIndex = 1
-        });
-        questions.Add(new QuestionData
-        {
-            question = "วัตถุที่มีมวลมากกว่าจะมีแรงเสียดทานมากกว่าหรือไม่?",
-            choices = new[] { "ใช่เสมอ", "ไม่ใช่เสมอ — ขึ้นกับสัมประสิทธิ์แรงเสียดทาน",
-                              "ไม่ — มวลไม่เกี่ยว", "ขึ้นกับความเร็ว" },
-            correctIndex = 1
-        });
-        questions.Add(new QuestionData
-        {
-            question = "พื้นน้ำแข็งทำให้รถลื่นเพราะอะไร?",
-            choices = new[] { "มวลลดลง", "แรงโน้มถ่วงเพิ่มขึ้น",
-                              "แรงเสียดทานต่ำมาก", "ความเร็วสูงขึ้น" },
-            correctIndex = 2
-        });
-        questions.Add(new QuestionData
-        {
-            question = "กฎข้อ 1 ของนิวตันกล่าวว่า?",
-            choices = new[] { "F = ma", "วัตถุจะอยู่นิ่งหรือเคลื่อนที่สม่ำเสมอถ้าไม่มีแรงสุทธิ",
-                              "แรงกิริยาเท่ากับแรงปฏิกิริยา", "พลังงานสร้างหรือทำลายไม่ได้" },
-            correctIndex = 1
-        });
+        };
+    }
+
+    private static void SetPanelActive(GameObject panel, bool active)
+    {
+        if (panel != null) panel.SetActive(active);
     }
 }

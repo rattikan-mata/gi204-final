@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SurfaceEffect : MonoBehaviour
 {
@@ -12,38 +12,43 @@ public class SurfaceEffect : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (!col.gameObject.CompareTag("Player")) return;
+        Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+        ApplyDrag(rb);
+    }
 
-        Rigidbody2D carRb = col.gameObject.GetComponent<Rigidbody2D>();
-        if (carRb == null) return;
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (!col.gameObject.CompareTag("Player")) return;
+        Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+        if (rb == null) return;
 
-        ApplyDrag(carRb);
+        float targetDrag = GetTargetDrag();
+        if (!Mathf.Approximately(rb.linearDamping, targetDrag))
+            ApplyDrag(rb);
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
         if (!col.gameObject.CompareTag("Player")) return;
+        Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+        rb.linearDamping = DRAG_NORMAL;
+    }
 
-        Rigidbody2D carRb = col.gameObject.GetComponent<Rigidbody2D>();
-        if (carRb == null) return;
-
-        carRb.linearDamping = DRAG_NORMAL;
+    private float GetTargetDrag()
+    {
+        return surfaceType switch
+        {
+            SurfaceType.Lava => DRAG_LAVA,
+            SurfaceType.Ice => DRAG_ICE,
+            _ => DRAG_NORMAL
+        };
     }
 
     private void ApplyDrag(Rigidbody2D rb)
     {
-        switch (surfaceType)
-        {
-            case SurfaceType.Lava:
-                rb.linearDamping = DRAG_LAVA;
-                Debug.Log("[SurfaceEffect] Lava: drag = " + DRAG_LAVA);
-                break;
-            case SurfaceType.Ice:
-                rb.linearDamping = DRAG_ICE;
-                Debug.Log("[SurfaceEffect] Ice: drag = " + DRAG_ICE);
-                break;
-            default:
-                rb.linearDamping = DRAG_NORMAL;
-                break;
-        }
+        rb.linearDamping = GetTargetDrag();
+        Debug.Log($"[SurfaceEffect] {surfaceType}: drag = {rb.linearDamping}");
     }
 }

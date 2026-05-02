@@ -1,16 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text scoreDisplayText;
+    public TMP_Text scoreDisplayText;
     public GameObject scoreResultPanel;
-    public Text scoreResultText;
-    public Button nextSceneButton;
+    public TMP_Text scoreResultText;
 
-    public int totalChildren = 5;
+    public Button nextSceneButton;
+    public int totalChildren = 3;
 
     private int score = 0;
     private int answeredCount = 0;
@@ -19,10 +20,18 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         answeredCount = 0;
-        scoreResultPanel.SetActive(false);
-        UpdateScoreDisplay();
 
-        nextSceneButton.onClick.AddListener(LoadNextScene);
+        if (scoreResultPanel != null)
+            scoreResultPanel.SetActive(false);
+        else
+            Debug.LogError("[ScoreManager] scoreResultPanel ยังไม่ผูกใน Inspector!");
+
+        if (nextSceneButton != null)
+            nextSceneButton.onClick.AddListener(LoadNextScene);
+        else
+            Debug.LogError("[ScoreManager] nextSceneButton ยังไม่ผูกใน Inspector!");
+
+        UpdateScoreDisplay();
     }
 
     public void AddScore()
@@ -34,17 +43,14 @@ public class ScoreManager : MonoBehaviour
     public void CheckAllAnswered(int answered)
     {
         answeredCount = answered;
-
         if (answeredCount >= totalChildren)
-        {
             StartCoroutine(ShowResultAfterDelay(0.5f));
-        }
     }
 
     private void UpdateScoreDisplay()
     {
         if (scoreDisplayText != null)
-            scoreDisplayText.text = "?? " + score + " / " + totalChildren;
+            scoreDisplayText.text = "🍦 " + score + " / " + totalChildren;
     }
 
     private IEnumerator ShowResultAfterDelay(float delay)
@@ -55,19 +61,21 @@ public class ScoreManager : MonoBehaviour
 
     private void ShowResult()
     {
+        if (scoreResultPanel == null || scoreResultText == null) return;
+
         scoreResultPanel.SetActive(true);
 
         string stars = "";
-        for (int i = 0; i < score; i++) stars += "?";
+        for (int i = 0; i < score; i++) stars += "⭐";
+        for (int i = score; i < totalChildren; i++) stars += "🌑";
 
-        scoreResultText.text = "Score: " + score + " / " + totalChildren + "\n" + stars;
+        scoreResultText.text =
+            "คะแนน : " + score + " / " + totalChildren + "\n" + stars;
     }
 
     private void LoadNextScene()
     {
-        int current = SceneManager.GetActiveScene().buildIndex;
-        int next = current + 1;
-
+        int next = SceneManager.GetActiveScene().buildIndex + 1;
         if (next < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadScene(next);
         else

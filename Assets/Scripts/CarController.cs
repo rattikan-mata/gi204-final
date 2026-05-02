@@ -2,9 +2,15 @@
 
 public class CarController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float accelerationPerPress = 5f;
-    public float jumpForce = 17.5f;
+    public float jumpForce = 30f;
     public float maxSpeed = 20f;
+
+    [Header("Audio Settings")]
+    public AudioSource sfxSource;
+    public AudioClip driveClip;
+    public AudioClip jumpClip;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -25,9 +31,11 @@ public class CarController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            float mass = rb.mass;
-            float forceMagnitude = mass * accelerationPerPress;
+            float forceMagnitude = rb.mass * accelerationPerPress;
             rb.AddForce(Vector2.right * forceMagnitude, ForceMode2D.Impulse);
+
+            if (sfxSource != null && driveClip != null)
+                sfxSource.PlayOneShot(driveClip);
         }
 
         if (rb.linearVelocity.x > maxSpeed)
@@ -38,23 +46,19 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * (rb.mass * jumpForce), ForceMode2D.Impulse);
+            rb.gravityScale = 3f;
             isGrounded = false;
+
+            if (sfxSource != null && jumpClip != null)
+                sfxSource.PlayOneShot(jumpClip);
         }
     }
 
-    public void SetCanMove(bool value)
-    {
-        canMove = value;
-
-        if (!value)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-        }
-    }
+    public void SetCanMove(bool value) => canMove = value;
 
     void OnCollisionEnter2D(Collision2D col)
     {
         isGrounded = true;
+        rb.gravityScale = 2f;
     }
 }
