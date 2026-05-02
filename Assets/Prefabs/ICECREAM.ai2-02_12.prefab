@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7231281711957195691}
   - component: {fileID: -815741346827446149}
   - component: {fileID: 4252575922418158614}
+  - component: {fileID: -5227713367629079451}
   m_Layer: 0
   m_Name: ICECREAM.ai2-02_12
   m_TagString: Untagged
@@ -166,3 +167,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5227713367629079451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048298834060263153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f213b1ec7766a4449ad53fdc1eacd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SurfaceEffect
+  surfaceType: 0

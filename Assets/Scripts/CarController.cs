@@ -3,12 +3,8 @@
 public class CarController : MonoBehaviour
 {
     public float accelerationPerPress = 5f;
-    public float jumpForce = 25f;
-    public float maxSpeed = 10f;
-
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.1f;
-    public LayerMask groundLayer;
+    public float jumpForce = 17.5f;
+    public float maxSpeed = 25f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -21,9 +17,11 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        if (!canMove) return;
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (!canMove)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -39,7 +37,8 @@ public class CarController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * (rb.mass * jumpForce), ForceMode2D.Impulse);
+            isGrounded = false;
         }
     }
 
@@ -52,5 +51,10 @@ public class CarController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        isGrounded = true;
     }
 }

@@ -3,15 +3,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform target;
-    public float smoothSpeed = 0.125f;
-    public Vector3 offset = new Vector3(2, 1, -10);
+    public Vector3 offset = new Vector3(14, 23, -84);
 
     void LateUpdate()
     {
-        if (target == null) return;
-
-        Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        if (target != null)
+        {
+            transform.position = target.position + offset;
+        }
     }
 }
