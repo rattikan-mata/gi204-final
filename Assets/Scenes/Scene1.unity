@@ -911,7 +911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &106249923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,9 +4533,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestionManager
   questions: []
-  questionPanel: {fileID: 0}
+  questionPanel: {fileID: 106249922}
   questionText: {fileID: 0}
-  answerButtons: []
+  answerButtons:
+  - {fileID: 1331681514}
+  - {fileID: 924659034}
+  - {fileID: 566055543}
+  - {fileID: 1191700214}
   answerButtonTexts: []
   feedbackPanel: {fileID: 0}
   feedbackText: {fileID: 0}
@@ -5179,7 +5183,7 @@ MonoBehaviour:
   scoreDisplayText: {fileID: 0}
   scoreResultPanel: {fileID: 0}
   scoreResultText: {fileID: 0}
-  nextSceneButton: {fileID: 0}
+  nextSceneButton: {fileID: 1322405037}
   totalChildren: 5
 --- !u!4 &555563040
 Transform:
@@ -9737,7 +9741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1131969077
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class CreditScene : MonoBehaviour
 {
-    [Header("UI References")]
     public Button playAgainButton;
 
     void Start()

@@ -4,7 +4,7 @@ public class CarController : MonoBehaviour
 {
     public float accelerationPerPress = 5f;
     public float jumpForce = 17.5f;
-    public float maxSpeed = 25f;
+    public float maxSpeed = 20f;
 
     private Rigidbody2D rb;
     private bool isGrounded;

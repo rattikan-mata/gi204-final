@@ -5,7 +5,6 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
-    [Header("UI References")]
     public Text scoreDisplayText;
     public GameObject scoreResultPanel;
     public Text scoreResultText;
@@ -61,7 +60,7 @@ public class ScoreManager : MonoBehaviour
         string stars = "";
         for (int i = 0; i < score; i++) stars += "?";
 
-        scoreResultText.text = "¤Ðá¹¹: " + score + " / " + totalChildren + "\n" + stars;
+        scoreResultText.text = "Score: " + score + " / " + totalChildren + "\n" + stars;
     }
 
     private void LoadNextScene()

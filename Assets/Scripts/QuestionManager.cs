@@ -15,7 +15,6 @@ public class QuestionManager : MonoBehaviour
 
     public List<QuestionData> questions = new List<QuestionData>();
 
-    [Header("UI References")]
     public GameObject questionPanel;
     public Text questionText;
     public Button[] answerButtons;        // ปุ่มตัวเลือก 4 ปุ่ม
@@ -80,11 +79,11 @@ public class QuestionManager : MonoBehaviour
         if (correct)
         {
             scoreManager.AddScore();
-            ShowFeedback("? ถูกต้อง! ได้ไอติมฟรี ??");
+            ShowFeedback("? Correct! Got Free Ice Cream ??");
         }
         else
         {
-            ShowFeedback("? ผิด! ไม่ได้ไอติมนะ ??");
+            ShowFeedback("? Wrong! Don't get Ice Cream ??");
         }
 
         questionCount++;
