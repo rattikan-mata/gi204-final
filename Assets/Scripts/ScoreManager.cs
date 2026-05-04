@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     public Button nextSceneButton;
 
     private int score = 0;
-    private int maxScoreDisplay = 5;
+    private int maxScoreDisplay = 3;
 
     void Start()
     {

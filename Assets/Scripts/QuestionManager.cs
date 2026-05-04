@@ -66,7 +66,7 @@ public class QuestionManager : MonoBehaviour
     private void SetupUI(QuestionData data)
     {
         questionPanel.SetActive(true);
-        categoryText.text = "Category: " + data.category;
+        categoryText.text = $"{data.category}";
         questionText.text = data.question;
         resultFeedbackText.text = "";
 
