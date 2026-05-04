@@ -179,4 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f213b1ec7766a4449ad53fdc1eacd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurfaceEffect
-  surfaceType: 0
+  surfaceType: 2
